@@ -12,8 +12,6 @@ const roleContents = [
 ];
 //Get Api key from env file
 const API_KEY = import.meta.env.VITE_ChatGPT_API_KEY;
-
-//const API_KEY = "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";
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
   "role": "system", 

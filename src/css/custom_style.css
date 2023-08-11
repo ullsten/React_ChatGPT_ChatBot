@@ -1,0 +1,19 @@
+/* custom_style.css */
+
+.custom-chat-container {
+  position: relative;
+  height: 800px;
+  width: 700px;
+}
+/* Add more custom styles as needed */
+.message_style{
+  background-color: rgb(211, 224, 229);
+  background-image: url(https://img.freepik.com/free-vector/technology-artifical-intelligence-background-with-face_1017-18298.jpg?w=1060&t=st=1691794665~exp=1691795265~hmac=9ecf279cc8f611ebf2e9ac1b05d4d0642524b605cc287488fb6d61ce72d643e2);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px 5px 5px 5px;
+  height: 100%;
+  width: 100%;
+
+}

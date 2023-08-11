@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './css/custom_style.css';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
@@ -84,8 +85,10 @@ function App() {
     }).then((data) => {
       return data.json();
     }).then((data) => {
+      
       console.log(data);
       console.log(data.choices[0].message.content);
+
       setMessages([...chatMessages, {
         message: data.choices[0].message.content,
         sender: "ChatGPT"
@@ -95,18 +98,22 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div style={{ position:"relative", height: "800px", width: "700px"  }}>
+    <div className="">
+      <div className="custom-chat-container">
         <MainContainer>
-          <ChatContainer>       
+          <ChatContainer className='ChatGPT_bubble_style'>       
             <MessageList 
               scrollBehavior="smooth" 
               typingIndicator={isTyping ? <TypingIndicator content="ChatGPT is typing" /> : null}
             >
+              <div className='message_style'>
               {messages.map((message, i) => {
                 console.log(message)
-                return <Message key={i} model={message} />
+                return <Message 
+                key={i} 
+                model={message} />
               })}
+              </div>
             </MessageList>
             <MessageInput placeholder="Type message here" onSend={handleSend} />        
           </ChatContainer>

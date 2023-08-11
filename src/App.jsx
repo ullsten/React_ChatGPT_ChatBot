@@ -28,6 +28,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <h2>ChatGPT App is coming for you!</h2>
     </>
   )
 }

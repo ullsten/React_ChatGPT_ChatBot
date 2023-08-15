@@ -4,22 +4,32 @@ import './css/custom_style.css';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
+
+
 //Different role ChatBot can have
 const roleContents = [
   "Explain things like you're talking to a software professional with 2 years of experience.",
   "Provide details as if you're instructing a student in a classroom.",
   "Discuss the topic as if you're presenting to a group of senior engineers.",
+  "Answer like you are a cowboy",
   // Add more role content strings as needed
 ];
+
 //Get Api key from env file
 const API_KEY = import.meta.env.VITE_ChatGPT_API_KEY;
-// "Explain things like you would to a 10 year old learning how to code."
-const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
-  "role": "system", 
-  "content": roleContents[0]
-}
+
+
 
 function App() {
+
+  const [selectedRoleContent, setSelectedRoleContent] = useState(roleContents[0]);
+
+// "Explain things like you would to a 10 year old learning how to code."
+const systemMessage = {
+  "role": "system", 
+  "content": selectedRoleContent,
+}
+
 
   const [messages, setMessages] = useState([
     {
@@ -99,6 +109,20 @@ function App() {
 
   return (
     <div className="">
+<div className='m-4'>
+  <label htmlFor="roleContent">Select Role Content:</label>
+  <select
+    id="roleContent"
+    value={selectedRoleContent}
+    onChange={(e) => setSelectedRoleContent(e.target.value)}
+  >
+    {roleContents.map((content) => (
+      <option key={content} value={content}>
+        {content}
+      </option>
+    ))}
+  </select>
+</div>
       <h1 className='text-5xl font-bold underline'>TailwindCSS in this project if you want</h1>
       <hr className='m-7'></hr>
       <div className="custom-chat-container">

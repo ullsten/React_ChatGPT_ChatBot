@@ -4,6 +4,8 @@
   position: relative;
   height: 800px;
   width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* Add more custom styles as needed */
 .message_style{
@@ -15,5 +17,4 @@
   border-radius: 5px 5px 5px 5px;
   height: 100%;
   width: 100%;
-
 }

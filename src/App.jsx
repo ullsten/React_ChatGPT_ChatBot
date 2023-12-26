@@ -123,7 +123,6 @@ const systemMessage = {
     ))}
   </select>
 </div>
-      <h1 className='text-5xl font-bold underline'>TailwindCSS in this project if you want</h1>
       <hr className='m-7'></hr>
       <div className="custom-chat-container">
         <MainContainer>

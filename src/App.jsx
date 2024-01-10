@@ -8,7 +8,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 
 //Different role ChatBot can have
 const roleContents = [
-  "Explain things like you're talking to a software professional with 2 years of experience.",
+  "Explain things like you're talking to a software professional with 20 years of experience.",
   "Provide details as if you're instructing a student in a classroom.",
   "Discuss the topic as if you're presenting to a group of senior engineers.",
   "Answer like you are a cowboy",
@@ -17,7 +17,6 @@ const roleContents = [
 
 //Get Api key from env file
 const API_KEY = import.meta.env.VITE_ChatGPT_API_KEY;
-
 
 
 function App() {
@@ -77,34 +76,36 @@ const systemMessage = {
     // and the messages which we formatted above. We add a system message in the front to'
     // determine how we want chatGPT to act. 
     const apiRequestBody = {
-      "model": "gpt-3.5-turbo",
+      // "model": "gpt-3.5-turbo",
+      "model": "gpt-4-1106-preview",
       "messages": [
         systemMessage,  // The system message DEFINES the logic of our chatGPT
         ...apiMessages // The messages from our chat with ChatGPT
       ]
     }
+    await fetch("https://api.openai.com/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + API_KEY, // Replace API_KEY with your actual API key
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(apiRequestBody)
+})
+.then(response => response.json())
+.then(data => {
+  // Process the response data
+  console.log(data);
+  setMessages([...chatMessages, {
+    message: data.choices[0].message.content,
+    sender: "ChatGPT"
+  }]);
+  setIsTyping(false);
+})
+.catch(error => {
+  // Handle any errors here
+  console.error("Error fetching data: ", error);
+});
 
-    await fetch("https://api.openai.com/v1/chat/completions", 
-    {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + API_KEY,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(apiRequestBody)
-    }).then((data) => {
-      return data.json();
-    }).then((data) => {
-      
-      console.log(data);
-      console.log(data.choices[0].message.content);
-
-      setMessages([...chatMessages, {
-        message: data.choices[0].message.content,
-        sender: "ChatGPT"
-      }]);
-      setIsTyping(false);
-    });
   }
 
   return (
